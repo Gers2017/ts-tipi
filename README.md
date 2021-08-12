@@ -16,11 +16,10 @@ cd <project-name>
 Install the dependencies
 ```bash
 npm i
-
 ```
 or
 ```bash
 yarn
 ```
 
-if you want to check the [project template](https://github.com/Gers2017/ts-template)
+If you want to check the [project template](https://github.com/Gers2017/ts-template)
