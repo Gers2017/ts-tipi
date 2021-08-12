@@ -1,0 +1,24 @@
+{
+  "main": "./index.js",
+  "bin": "./index.js",
+  "name": "ts-tipi",
+  "version": "1.0.0",
+  "description": "typescript is <3",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "ts-project",
+    "typescript",
+    "ts",
+    "cli"
+  ],
+  "author": "Gers2017",
+  "license": "MIT",
+  "dependencies": {
+    "inquirer": "^8.1.2"
+  },
+  "repository": {
+    "type": "git"
+  }
+}
