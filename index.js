@@ -43,19 +43,18 @@ function generateDirectoryContent(templatePath, newProjectPath) {
     }
   });
 }
-
-inquirer
-  .prompt(QUESTIONS)
-  .then((answers) => {
-    const projectName = answers["ts-project-name"];
+async function main() {
+  const answers = await inquirer.prompt(QUESTIONS);
+  const projectName = answers["ts-project-name"];
+  try {
     fs.mkdirSync(join(current_directory, projectName));
-
     generateDirectoryContent(ts_template_path, projectName);
-
     console.log(
       `Congratulations ${projectName} was created!\nNext steps:\nrun: cd ${projectName}\nThen run: npm i or yarn to install the dependencies`
     );
-  })
-  .catch((e) => {
-    console.error(e);
-  });
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+main();
