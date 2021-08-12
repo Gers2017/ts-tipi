@@ -1,22 +1,26 @@
 # ts-tipi
 A CLI tool to rapidly create simple typescript projects
 
-## How to start
+## How to get started
 Run the following commands to create a new project
 ```bash
-# npx ts-tipi
+npx ts-tipi
 ```
-Once it's done run the following to install the dependencies.
+Once it's done run the following commands:
+
+Access your project
 ```bash
-# access to you project
-
 cd <project-name>
+```
 
-# install dependencies
-
+Install the dependencies
+```bash
 npm i
 
-# or 
-
+```
+or
+```bash
 yarn
 ```
+
+if you want to check the [project template](https://github.com/Gers2017/ts-template)
