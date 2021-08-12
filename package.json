@@ -19,6 +19,11 @@
     "inquirer": "^8.1.2"
   },
   "repository": {
-    "type": "git"
-  }
+    "type": "git",
+    "url": "git+https://github.com/Gers2017/ts-tipi"
+  },
+  "bugs": {
+    "url": "https://github.com/Gers2017/ts-tipi/issues"
+  },
+  "homepage": "https://github.com/Gers2017/ts-tipi#readme"
 }
