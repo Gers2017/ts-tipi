@@ -1,0 +1,25 @@
+{
+  "name": "ts-node",
+  "version": "1.0.0",
+  "description": "template for ts-tipi",
+  "main": "index.ts",
+  "scripts": {
+    "dev": "nodemon",
+    "start": "ts-node index.ts"
+  },
+  "keywords": [
+    "typescript",
+    "node"
+  ],
+  "author": "your-name",
+  "license": "ISC",
+  "dependencies": {
+    "@types/eslint": "^7.28.0",
+    "@types/node": "^16.7.10",
+    "nodemon": "^2.0.12",
+    "ts-node": "^10.2.1"
+  },
+  "devDependencies": {
+    "typescript": "^4.4.2"
+  }
+}
