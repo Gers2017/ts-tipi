@@ -7,8 +7,8 @@ Run the following commands to create a new project
 npx ts-tipi
 ```
 Choose between the tamplate options
-- nodemon-watch: `nodemon and tsc --watch`
-- ts-node: `ts-node with nodemon setup`
+- nodemon-watch: `tsc --w and nodemon`
+- ts-node: `ts-node and nodemon`
 
 Once it's done run the following commands:
 
@@ -24,18 +24,20 @@ npm i
 yarn
 ```
 ### Instructions for nodemon-watch
+To watch the files using tsc --w
 ```bash
 npm run watch
 #or
 yarn watch
 ```
-In another terminal
+To start nodemon, in another terminal run:
 ```bash
 npm run dev
 #or
 yarn dev
 ```
 ### Instructions for ts-node
+Runs ts-node everytime a ts file changes
 ```bash
 npm run dev
 #or
