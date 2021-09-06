@@ -2,7 +2,7 @@
   "main": "./index.js",
   "bin": "./index.js",
   "name": "ts-tipi",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "typescript is <3",
   "scripts": {
     "start": "node index.js"
