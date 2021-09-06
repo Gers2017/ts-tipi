@@ -20,7 +20,8 @@
     "experimentalDecorators": true,
     "resolveJsonModule": true,
     "checkJs": true,
-    "baseUrl": "."
+    "baseUrl": ".",
+    "downlevelIteration": true
   },
   "exclude": ["node_modules"],
   "include": ["src/**/*", "tests/**/*"]
