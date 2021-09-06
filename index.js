@@ -4,31 +4,34 @@ const inquirer = require("inquirer");
 const chalk = require("chalk");
 const fs = require("fs");
 const { join } = require("path");
-const cwd = process.cwd();
+const current_directory = process.cwd();
+const templates_dir = join(__dirname, "templates");
+const {files_to_ignore, directories_to_ignore} = require("./lib/ignore")
 
-function generateDirectoryContent(templatePath, newProjectPath) {
-  const filesToCreate = fs.readdirSync(templatePath);
 
-  filesToCreate.forEach((file) => {
-    const originalFilePath = join(templatePath, file);
-    const stats = fs.statSync(originalFilePath);
-    // skip node_modules
-    if (file === "node_modules" && stats.isDirectory()) return;
+function generateDirectoryContent(templatePath, newProjectName) {
+  const files = fs.readdirSync(templatePath);
 
+  files.forEach((file) => {
+    const templateFilePath = join(templatePath, file);
+    const stats = fs.statSync(templateFilePath);
+
+    // Clone the contents of the file
     if (stats.isFile()) {
-      const contents = fs.readFileSync(originalFilePath, "utf8");
-      // rename _gitignore to .gitignore
+      if(files_to_ignore.includes(file)) return; // ignore files
+      const contents = fs.readFileSync(templateFilePath, "utf8");
+
       if (file === "_gitignore") file = ".gitignore";
-      // path to write the new file
-      const writePath = join(cwd, newProjectPath, file);
-      // write the contents
+
+      const writePath = join(current_directory, newProjectName, file);
       fs.writeFileSync(writePath, contents);
     } else if (stats.isDirectory()) {
-      fs.mkdirSync(join(cwd, newProjectPath, file));
+      if(directories_to_ignore.includes(file)) return; // ignore node_modules and others
+      fs.mkdirSync(join(current_directory, newProjectName, file));
 
       generateDirectoryContent(
         join(templatePath, file),
-        join(newProjectPath, file)
+        join(newProjectName, file)
       );
     }
   });
@@ -58,9 +61,9 @@ async function main() {
   const template = answers["template"];
 
   try {
-    const templatePath = join(cwd, "templates", template);
+    const templatePath = join(templates_dir, template);
     // make the directory
-    fs.mkdirSync(join(cwd, projectName));
+    fs.mkdirSync(join(current_directory, projectName));
     // clone the contents
     generateDirectoryContent(templatePath, projectName);
     console.log(
