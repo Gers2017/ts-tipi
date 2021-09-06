@@ -1,27 +1,28 @@
 {
   "compilerOptions": {
     "target": "ES6",
-    "module": "commonjs",
-    "lib": ["dom", "es6", "es2017", "esnext.asynciterable"],
+    "module": "CommonJS",
+    "lib": ["dom", "ES6", "ES2017", "esnext.asynciterable"],
     "skipLibCheck": true,
+    "outDir": "./dist",
     "sourceMap": true,
     "moduleResolution": "node",
-    "removeComments": true,
     "noImplicitAny": true,
+    "removeComments": true,
     "strictNullChecks": true,
     "strictFunctionTypes": true,
     "noImplicitThis": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
+    "experimentalDecorators": true,
     "resolveJsonModule": true,
-    "allowJs": true,
-    "strict": true,
-    "downlevelIteration": true,
-    "experimentalDecorators": true
+    "checkJs": true,
+    "baseUrl": ".",
+    "downlevelIteration": true
   },
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "include": ["src/**/*", "tests/**/*"]
 }
