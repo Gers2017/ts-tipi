@@ -7,7 +7,7 @@ Run the following commands to create a new project
 npx ts-tipi
 ```
 Choose between the tamplate options
-- nodemon-watch: `nodemon and tsc --watch setupc`
+- nodemon-watch: `nodemon and tsc --watch`
 - ts-node: `ts-node with nodemon setup`
 
 Once it's done run the following commands:
@@ -20,8 +20,24 @@ cd <project-name>
 Install the dependencies
 ```bash
 npm i
-```
-or
-```bash
+# or 
 yarn
+```
+### Instructions for nodemon-watch
+```bash
+npm run watch
+#or
+yarn watch
+```
+In another terminal
+```bash
+npm run dev
+#or
+yarn dev
+```
+### Instructions for ts-node
+```bash
+npm run dev
+#or
+yarn dev
 ```
