@@ -1,10 +1,12 @@
 /node_modules
 /templates/*/node_modules
-/templates/*/logs
-/templates/*/_.log
-/templates/*/npm-debug.log_
+/templates/*/dist/*.js
+/templates/*/*.log
+/templates/*/npm-debug.log*
+/templates/*/npm-debug.log*
 /templates/*/yarn-debug.log*
 /templates/*/yarn-error.log*
-/templates/*/lerna-debug.log\*
+/templates/*/lerna-debug.log*
 /templates/*/package-lock.json
 /templates/*/yarn.lock
+/templates/*/.pnpm-debug.log*
