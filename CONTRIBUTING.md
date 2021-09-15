@@ -22,11 +22,11 @@
 
 ## What should I do before getting started
 ### Project setup
-To setup the project on your local enviroment please follow these steps:
+To setup the project on your local environment please follow these steps:
 - Clone the repository to your local environment
 - Make sure you have node v14.16 or newest
-- Install the dependencies using `npm i` or `yarn` (you don't have to install template's dependencies)
-- That's all you're free to continue
+- Install the dependencies using `npm i` or `yarn` (you don't have to install templates dependencies) 
+- That's all, you're free to continue
 
 ## Contributing
 
@@ -53,10 +53,10 @@ Follow the following guides to create a feature suggestion otherwise your sugges
 ```
 
 ### Pull request process
-The pull request process has some goals
-- Improve the project's quality
-- Facilitate the use of the tool to the end user
-- Keep or enhance the quality of the code
+  The pull request process has some goals
+  - Improve the project's quality
+  - Facilitate the use of the tool to the end user
+  - Keep or enhance the quality of the code
 
 #### Your pull request should contain the following:
 - Use a clean and descriptive title for the changes
