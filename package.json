@@ -2,7 +2,7 @@
   "main": "./index.js",
   "bin": "./index.js",
   "name": "ts-tipi",
-  "version": "1.2.4",
+  "version": "1.3.0",
   "description": "typescript is <3",
   "scripts": {
     "start": "node index.js"
@@ -16,8 +16,8 @@
   "author": "Gers2017",
   "license": "MIT",
   "dependencies": {
-    "inquirer": "^8.1.2",
-    "chalk": "^4.1.2"
+    "chalk": "^4.1.2",
+    "inquirer": "^8.1.2"
   },
   "repository": {
     "type": "git",
@@ -26,5 +26,8 @@
   "bugs": {
     "url": "https://github.com/Gers2017/ts-tipi/issues"
   },
-  "homepage": "https://github.com/Gers2017/ts-tipi#readme"
+  "homepage": "https://github.com/Gers2017/ts-tipi#readme",
+  "devDependencies": {
+    "prettier": "^2.4.1"
+  }
 }
