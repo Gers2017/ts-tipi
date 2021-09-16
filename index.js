@@ -1,41 +1,16 @@
 #!/usr/bin/env node
-
+//@ts-check
 const inquirer = require("inquirer");
-const chalk = require("chalk");
-const fs = require("fs");
 const { join } = require("path");
-const current_directory = process.cwd();
-const templates_dir = join(__dirname, "templates");
-const {files_to_ignore, directories_to_ignore} = require("./lib/ignore")
-
-
-function generateDirectoryContent(templatePath, newProjectName) {
-  const files = fs.readdirSync(templatePath);
-
-  files.forEach((file) => {
-    const templateFilePath = join(templatePath, file);
-    const stats = fs.statSync(templateFilePath);
-
-    // Clone the contents of the file
-    if (stats.isFile()) {
-      if(files_to_ignore.includes(file)) return; // ignore files
-      const contents = fs.readFileSync(templateFilePath, "utf8");
-
-      if (file === "_gitignore") file = ".gitignore";
-
-      const writePath = join(current_directory, newProjectName, file);
-      fs.writeFileSync(writePath, contents);
-    } else if (stats.isDirectory()) {
-      if(directories_to_ignore.includes(file)) return; // ignore node_modules and others
-      fs.mkdirSync(join(current_directory, newProjectName, file));
-
-      generateDirectoryContent(
-        join(templatePath, file),
-        join(newProjectName, file)
-      );
-    }
-  });
-}
+const cwd = process.cwd();
+const baseTemplatePath = join(__dirname, "templates", "ts-template");
+const packagesPath = join(__dirname, "templates", "packages");
+const {
+  generateDirectoryContent,
+  createProjectFolder,
+  getMessage,
+} = require("./lib/core");
+const templateNames = ["nodemon-watch", "ts-node-dev"];
 
 async function main() {
   const answers = await inquirer.prompt([
@@ -43,8 +18,8 @@ async function main() {
       name: "ts-project-name",
       type: "input",
       message: "Project name:",
-      validate: function (input) {
-        if (/^([A-Za-z\-\_\d])+$/.test(input)) return true;
+      validate: (input) => {
+        if (/^([A-Za-z\-_\d])+$/.test(input)) return true;
         else
           return "Project name may only include letters, numbers, underscores and hashes.";
       },
@@ -52,31 +27,25 @@ async function main() {
     {
       name: "template",
       type: "list",
-      message: "Which template do you want to use?",
-      choices: ["nodemon-watch", "ts-node"],
+      message: "Which template would you like to use?",
+      choices: templateNames,
     },
   ]);
 
   const projectName = answers["ts-project-name"];
-  const template = answers["template"];
-
+  const templateName = answers["template"];
+  const packagePath = join(packagesPath, templateName, "package.json");
+  console.log(packagePath);
   try {
-    const templatePath = join(templates_dir, template);
-    // make the directory
-    fs.mkdirSync(join(current_directory, projectName));
-    // clone the contents
-    generateDirectoryContent(templatePath, projectName);
-    console.log(
-      "Congratulations " +
-        chalk.blue.bold(projectName) +
-        " was created!\n" +
-        "Next steps:\n" +
-        "run: " +
-        chalk.cyan(`cd ${projectName}`) +
-        "\n" +
-        "Then run: " +
-        chalk.cyan("npm i or yarn")
-    );
+    // Generate the base template
+    const { created } = createProjectFolder(cwd, projectName);
+    if (!created) {
+      return;
+    }
+
+    generateDirectoryContent(baseTemplatePath, projectName, packagePath);
+
+    console.log(getMessage(projectName, templateName));
   } catch (error) {
     console.error(error);
     process.exit();
