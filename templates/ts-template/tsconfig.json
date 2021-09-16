@@ -2,9 +2,9 @@
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
     "incremental": true,
-    "target": "esnext",
+    "target": "ES2017",
     "module": "commonjs",
-    "lib": ["dom", "es6", "esnext", "esnext.asynciterable"],
+    "lib": ["dom", "es6", "ES2017", "esnext.asynciterable"],
     "skipLibCheck": true,
     "sourceMap": true,
     "outDir": "./dist",
