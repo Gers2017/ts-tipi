@@ -48,7 +48,6 @@ Follow the following guides to create a feature suggestion otherwise your sugges
 ```bash
 # Why do you want this feature?
 # How does this feature would be useful to the project?
-# How relevant is this feature for the project?
 # Examples (if needed)
 ```
 
@@ -66,7 +65,7 @@ Follow the following guides to create a feature suggestion otherwise your sugges
 
 Title:
 ```bash
-Use async awit: #22969
+Use async await: #22969
 ```
 Description:
 ```bash
