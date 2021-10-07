@@ -35,7 +35,6 @@ async function main() {
   const projectName = answers["ts-project-name"];
   const templateName = answers["template"];
   const packagePath = join(packagesPath, templateName, "package.json");
-  console.log(packagePath);
   try {
     // Generate the base template
     const { created } = createProjectFolder(cwd, projectName);
@@ -45,9 +44,7 @@ async function main() {
 
     generateDirectoryContent(baseTemplatePath, projectName, packagePath);
 
-    console.log(getMessage(projectName, templateName));
   } catch (error) {
-    console.error(error);
     process.exit();
   }
 }
