@@ -15,3 +15,4 @@
 /.vscode
 /express-temp
 /apollo-temp
+/.prettierrc

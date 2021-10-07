@@ -4,13 +4,15 @@ const inquirer = require("inquirer");
 const { join } = require("path");
 const cwd = process.cwd();
 const { templateChoices } = require("./types/templates");
-const { TsProject, TemplateConfig } = require("./types/tsproject");
+const { TsProject } = require("./types/tsproject");
+const { TemplateConfig } = require("./types/templateConfig");
 const baseTemplatePath = join(__dirname, "templates", "ts-template");
 const {
   getMessage,
   createProjectDirectory,
   CloneDirectoryContent,
 } = require("./lib/core");
+const { filesToReplace } = require("./lib/replace");
 
 async function main() {
   const answers = await inquirer.prompt([
@@ -36,7 +38,8 @@ async function main() {
   const templateName = answers["template"];
   const templateConfig = new TemplateConfig(
     templateName,
-    join(__dirname, "templates", templateName)
+    join(__dirname, "templates", templateName),
+    filesToReplace[templateName],
   );
 
   const tsProject = new TsProject(projectName, templateConfig, cwd);
@@ -46,7 +49,6 @@ async function main() {
     if (!created) return;
 
     CloneDirectoryContent(baseTemplatePath, projectName, tsProject);
-
     console.log(getMessage(projectName, templateName));
     process.exit();
   } catch (error) {

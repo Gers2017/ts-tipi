@@ -2,7 +2,7 @@ class TsProject {
   /**
    * TsProject
    * @param {string} projectName Name of the project
-   * @param {TemplateConfig} template The template choosen by the user
+   * @param {TemplateConfig} template The template chosen by the user
    * @param {string} cwd The current working directory of the user
    */
   constructor(projectName, template, cwd) {
@@ -12,23 +12,20 @@ class TsProject {
   }
   /**
    * getTemplatePath
-   * @returns {string} Returns the template path based on given the template name
+   * @returns {string}
    */
   getTemplatePath() {
     return this.template.path;
   }
-}
 
-class TemplateConfig {
   /**
-   * TemplateConfig
-   * @param {string} name Name of the template
-   * @param {string} path Path of the template
+   * isTemplateOfType
+   * @param templateName
+   * @returns {boolean}
    */
-  constructor(name, path) {
-    this.name = name;
-    this.path = path;
+  isTemplateOfType(templateName) {
+    return this.template.name === templateName;
   }
 }
 
-module.exports = { TsProject, TemplateConfig };
+module.exports = { TsProject };
