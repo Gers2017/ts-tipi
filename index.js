@@ -43,8 +43,9 @@ async function main() {
     }
 
     generateDirectoryContent(baseTemplatePath, projectName, packagePath);
-
+    console.log(getMessage(projectName, templateName));
   } catch (error) {
+    console.error(error);
     process.exit();
   }
 }
