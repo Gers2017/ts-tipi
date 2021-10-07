@@ -36,6 +36,7 @@ async function main() {
 
   const projectName = answers["ts-project-name"];
   const templateName = answers["template"];
+
   const templateConfig = new TemplateConfig(
     templateName,
     join(__dirname, "templates", templateName),
@@ -49,6 +50,7 @@ async function main() {
     if (!created) return;
 
     CloneDirectoryContent(baseTemplatePath, projectName, tsProject);
+
     console.log(getMessage(projectName, templateName));
     process.exit();
   } catch (error) {
