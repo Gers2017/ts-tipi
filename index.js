@@ -3,14 +3,14 @@
 const inquirer = require("inquirer");
 const { join } = require("path");
 const cwd = process.cwd();
+const { templateChoices } = require("./types/templates");
+const { TsProject, TemplateConfig } = require("./types/tsproject");
 const baseTemplatePath = join(__dirname, "templates", "ts-template");
-const packagesPath = join(__dirname, "templates", "packages");
 const {
-  generateDirectoryContent,
-  createProjectFolder,
   getMessage,
+  createProjectDirectory,
+  CloneDirectoryContent,
 } = require("./lib/core");
-const templateNames = ["nodemon-watch", "ts-node-dev"];
 
 async function main() {
   const answers = await inquirer.prompt([
@@ -21,31 +21,34 @@ async function main() {
       validate: (input) => {
         if (/^([A-Za-z\-_\d])+$/.test(input)) return true;
         else
-          return "Project name may only include letters, numbers, underscores and hashes.";
+          return "Your Project name may only include letters, numbers, underscores and hashes.";
       },
     },
     {
       name: "template",
       type: "list",
       message: "Which template would you like to use?",
-      choices: templateNames,
+      choices: templateChoices,
     },
   ]);
 
   const projectName = answers["ts-project-name"];
   const templateName = answers["template"];
-  const packagePath = join(packagesPath, templateName, "package.json");
-  console.log(packagePath);
-  try {
-    // Generate the base template
-    const { created } = createProjectFolder(cwd, projectName);
-    if (!created) {
-      return;
-    }
+  const templateConfig = new TemplateConfig(
+    templateName,
+    join(__dirname, "templates", templateName)
+  );
 
-    generateDirectoryContent(baseTemplatePath, projectName, packagePath);
+  const tsProject = new TsProject(projectName, templateConfig, cwd);
+
+  try {
+    const { created } = createProjectDirectory(tsProject);
+    if (!created) return;
+
+    CloneDirectoryContent(baseTemplatePath, projectName, tsProject);
 
     console.log(getMessage(projectName, templateName));
+    process.exit();
   } catch (error) {
     console.error(error);
     process.exit();
